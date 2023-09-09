@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	a {
+		text-decoration: underline;
+		text-underline-offset: 0.2rem;
+	}
+
+	a:focus-visible {
+		outline: 0.1rem solid #fff;
+		outline-offset: 0.2rem;
+	}
+}
