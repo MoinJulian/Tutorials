@@ -18,13 +18,19 @@ dotenv.config();
 
 // setup Open AI
 
-import { Configuration, OpenAIApi } from "openai";
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+  organization: "org-FwPHF7vzYXfQyBsl1ll4tkwX",
+  apiKey: process.env.OPENAI_API_KEY
 });
-const openai = new OpenAIApi(configuration);
 
 // handle POST request
-app.post("/completion", (req, res) => {
-  console.log(req.body.message);
+app.post("/completion", async (req, res) => {
+  const response = await openai.completions.create({
+    model: "text-davinci-003",
+    prompt: req.body.message,
+    max_tokens: 2028,
+  });
+  console.log(response);
 });
