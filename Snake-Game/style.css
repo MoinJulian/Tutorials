@@ -6,6 +6,8 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  flex-direction: column;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 main {
@@ -21,4 +23,9 @@ main {
 
 .active {
   background-color: #555;
+}
+
+#status {
+  padding: 5px;
+  font-size: 30px;
 }

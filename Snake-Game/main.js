@@ -1,4 +1,5 @@
 const mainElement = document.querySelector("main");
+const statusElement = document.getElementById("status");
 
 const SIZE = 20;
 
@@ -72,7 +73,7 @@ function updateSnake() {
 }
 
 function handleGameOver() {
-  console.log("lost");
+  statusElement.innerText = "Gameover";
   clearInterval(interval);
 }
 
@@ -113,7 +114,9 @@ function restartGame() {
     [1, 0],
   ];
 
-  clearInterval(interval)
+  clearInterval(interval);
+
+  statusElement.innerText = "";
 
   interval = setInterval(loop, 500);
 }
