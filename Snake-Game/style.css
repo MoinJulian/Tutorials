@@ -11,8 +11,9 @@ body {
 main {
   width: 90vmin;
   height: 90vmin;
-  border: 1px solid red;
   display: grid;
   grid-template-columns: repeat(20, 1fr);
   grid-template-rows: repeat(20, 1fr);
+  gap: 2px;
+  border: 1px solid #555;
 }
