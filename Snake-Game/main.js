@@ -32,7 +32,7 @@ function updateSnake() {
     case "right":
       const [x, y] = snake.at(-1);
       if (x + 1 >= SIZE) {
-        window.alert("lost");
+        console.log("lost");
         clearInterval(interval);
       }
       snake = [snake.slice(), [x + 1, y]];
