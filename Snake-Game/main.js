@@ -2,10 +2,13 @@ const mainElement = document.querySelector("main");
 const statusElement = document.getElementById("status");
 
 const SIZE = 20;
-
-let speed = 200;
-
+let speed = 150;
 mainElement.style.setProperty("--size", SIZE);
+let direction = "right";
+let firstTime = true;
+let snake = [[0, 0]];
+let food;
+let interval;
 
 for (let y = 0; y < SIZE; y++) {
   for (let x = 0; x < SIZE; x++) {
@@ -15,16 +18,6 @@ for (let y = 0; y < SIZE; y++) {
     mainElement.appendChild(cell);
   }
 }
-
-let direction = "right";
-
-let firstTime = true;
-
-let snake = [[0, 0]];
-
-let food;
-
-let interval;
 
 function drawSnake() {
   document.querySelectorAll(".cell").forEach((cell) => {
@@ -55,16 +48,12 @@ function updateSnake() {
       break;
   }
   if (!isValid(nextHead)) {
-    handleGameOver();
+    handleGameover();
     return;
   }
 
   if (snake.some(([u, v]) => [u, v].toString() == nextHead.toString())) {
-    handleGameOver();
-  }
-
-  if (x + 1 >= SIZE) {
-    handleGameOver();
+    handleGameover();
     return;
   }
 
@@ -81,8 +70,8 @@ function isValid([x, y]) {
   return x >= 0 && y >= 0 && x < SIZE && y < SIZE;
 }
 
-function handleGameOver() {
-  statusElement.innerText = "Gameover";
+function handleGameover() {
+  statusElement.innerText = `Gameover (Length: ${snake.length})`;
   clearInterval(interval);
 }
 
@@ -95,7 +84,6 @@ function generateFood() {
   const x = Math.floor(Math.random() * SIZE);
   const y = Math.floor(Math.random() * SIZE);
   food = [x, y];
-
   const cell = document.getElementById(y + "," + x);
   cell.classList.add("food");
 }
@@ -103,6 +91,7 @@ function generateFood() {
 generateFood();
 
 function loop() {
+  writeLength();
   if (!firstTime) updateSnake();
   drawSnake();
   firstTime = false;
@@ -115,7 +104,7 @@ window.addEventListener("keydown", (e) => {
 function handleInput(key) {
   switch (key) {
     case "ArrowLeft":
-      if (direction != "right") {
+      if (direction !== "right") {
         direction = "left";
       }
       break;
@@ -142,18 +131,16 @@ function handleInput(key) {
 
 function restartGame() {
   direction = "right";
-
   snake = [[0, 0]];
-
   clearInterval(interval);
-
   statusElement.innerText = "";
-
   firstTime = true;
-
   interval = setInterval(loop, speed);
-
   generateFood();
+}
+
+function writeLength() {
+  statusElement.innerText = "Length: " + snake.length;
 }
 
 interval = setInterval(loop, speed);
