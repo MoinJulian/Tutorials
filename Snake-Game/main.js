@@ -9,14 +9,9 @@ for (let y = 0; y < 20; y++) {
   }
 }
 
-let snake = [
-  [0, 0],
-  [1, 0],
-  [2, 0],
-  [2, 1],
-  [2, 2],
-  [2, 3],
-];
+let direction = "right";
+
+let snake = [[0, 0]];
 
 function drawSnake() {
   document.querySelectorAll(".cell").forEach((cell) => {
@@ -28,4 +23,18 @@ function drawSnake() {
   }
 }
 
-drawSnake();
+function updateSnake() {
+  switch (direction) {
+    case "right":
+      const [x, y] = snake.at(-1);
+      snake = [snake.shift(), [x + 1, y]];
+      break;
+  }
+}
+
+function loop() {
+  drawSnake();
+  updateSnake();
+}
+
+setInterval(loop, 500);
