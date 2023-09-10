@@ -35,7 +35,7 @@ function updateSnake() {
         window.alert("lost");
         clearInterval(interval);
       }
-      snake = [snake.shift(), [x + 1, y]];
+      snake = [snake.slice(), [x + 1, y]];
       break;
   }
 }
