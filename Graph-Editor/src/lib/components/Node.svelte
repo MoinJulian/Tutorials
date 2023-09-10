@@ -2,8 +2,14 @@
   export let node;
 </script>
 
-<div class="node" style="--size: {node.size}">
-  <div class="circle" style="width: {node.size}px; height: {node.size}px"></div>
+<div
+  class="node"
+  style="top: {node.y - node.size / 2}px; 
+  left: {node.x - node.size / 2}px; 
+  --size: {node.size}px; 
+  --color: {node.color}"
+>
+  <div class="circle"></div>
 </div>
 
 <style>
@@ -14,6 +20,7 @@
   .circle {
     width: var(--size);
     height: var(--size);
-    background-color: black;
+    background-color: var(--color);
+    border-radius: 50%;
   }
 </style>
