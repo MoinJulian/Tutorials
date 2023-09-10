@@ -21,6 +21,8 @@ let snake = [
   [1, 0],
 ];
 
+let food = [6, 12];
+
 let interval;
 
 function drawSnake() {
@@ -77,6 +79,22 @@ function handleGameOver() {
   clearInterval(interval);
 }
 
+function generateFood() {
+  if (food) {
+    const [x, y] = food;
+    const cell = document.getElementById(x + "," + y);
+    cell.classList.remove("food");
+  }
+  const x = Math.floor(Math.random() * SIZE);
+  const y = Math.floor(Math.random() * SIZE);
+  food = [x, y];
+
+  const cell = document.getElementById(x + "," + y);
+  cell.classList.add("food");
+}
+
+generateFood();
+
 function loop() {
   drawSnake();
   updateSnake();
@@ -119,6 +137,8 @@ function restartGame() {
   statusElement.innerText = "";
 
   interval = setInterval(loop, 500);
+
+  generateFood();
 }
 
 interval = setInterval(loop, 500);
