@@ -19,10 +19,20 @@ main {
   grid-template-rows: repeat(var(--size), 1fr);
   gap: 2px;
   border: 1px solid #555;
+  padding: 4px;
+  border-radius: 4px;
 }
 
 .active {
   background-color: #555;
+}
+
+.cell {
+  border-radius: 4px;
+}
+
+.food {
+  background-color: orangered;
 }
 
 #status {
