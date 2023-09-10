@@ -21,7 +21,7 @@ let snake = [
   [1, 0],
 ];
 
-let food = [6, 12];
+let food;
 
 let interval;
 
@@ -38,40 +38,42 @@ function drawSnake() {
 function updateSnake() {
   const [x, y] = snake.at(-1);
   const [_, ...other] = snake;
+  let nextHead;
   switch (direction) {
     case "right":
-      if (x + 1 >= SIZE) {
-        handleGameOver();
-        return;
-      }
-
-      snake = [...other, [x + 1, y]];
+      nextHead = [x + 1, y];
       break;
     case "left":
-      if (x - 1 < 0) {
-        handleGameOver();
-        return;
-      }
-
-      snake = [...other, [x - 1, y]];
+      nextHead = [x - 1, y];
       break;
     case "up":
-      if (y - 1 < 0) {
-        handleGameOver();
-        return;
-      }
-
-      snake = [...other, [x, y - 1]];
+      nextHead = [x, y - 1];
       break;
     case "down":
-      if (y + 1 >= SIZE) {
-        handleGameOver();
-        return;
-      }
-
-      snake = [...other, [x, y + 1]];
+      nextHead = [x, y + 1];
       break;
   }
+  if (!isValid(nextHead)) {
+    handleGameOver();
+    return;
+  }
+
+  if (x + 1 >= SIZE) {
+    handleGameOver();
+    return;
+  }
+
+  let hasFood = nextHead.toString() == food.toString();
+  if (hasFood) {
+    snake = [...snake, nextHead];
+    generateFood();
+  } else {
+    snake = [...other, nextHead];
+  }
+}
+
+function isValid([x, y]) {
+  return x >= 0 && y >= 0 && x < SIZE && y < SIZE;
 }
 
 function handleGameOver() {
@@ -82,14 +84,14 @@ function handleGameOver() {
 function generateFood() {
   if (food) {
     const [x, y] = food;
-    const cell = document.getElementById(x + "," + y);
+    const cell = document.getElementById(y + "," + x);
     cell.classList.remove("food");
   }
   const x = Math.floor(Math.random() * SIZE);
   const y = Math.floor(Math.random() * SIZE);
   food = [x, y];
 
-  const cell = document.getElementById(x + "," + y);
+  const cell = document.getElementById(y + "," + x);
   cell.classList.add("food");
 }
 
