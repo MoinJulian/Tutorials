@@ -1,5 +1,5 @@
 <script>
-// @ts-nocheck
+  // @ts-nocheck
 
   export let node;
   import NodeMenu from "./NodeMenu.svelte";
@@ -53,6 +53,9 @@
 <style>
   .node {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .circle {
