@@ -15,7 +15,10 @@ for (let y = 0; y < SIZE; y++) {
 
 let direction = "right";
 
-let snake = [[0, 0]];
+let snake = [
+  [0, 0],
+  [1, 0],
+];
 
 let interval;
 
@@ -37,14 +40,15 @@ function updateSnake() {
         console.log("lost");
         clearInterval(interval);
       }
-      snake = [snake.slice(), [x + 1, y]];
+      const [first, ...other] = snake;
+      snake = [...other, [x + 1, y]];
       break;
   }
 }
 
 function loop() {
-  updateSnake();
   drawSnake();
+  updateSnake();
 }
 
 interval = setInterval(loop, 500);
