@@ -3,6 +3,8 @@ const statusElement = document.getElementById("status");
 
 const SIZE = 20;
 
+let speed = 200;
+
 mainElement.style.setProperty("--size", SIZE);
 
 for (let y = 0; y < SIZE; y++) {
@@ -149,9 +151,9 @@ function restartGame() {
 
   firstTime = true;
 
-  interval = setInterval(loop, 500);
+  interval = setInterval(loop, speed);
 
   generateFood();
 }
 
-interval = setInterval(loop, 500);
+interval = setInterval(loop, speed);
