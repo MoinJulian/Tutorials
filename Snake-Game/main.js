@@ -18,15 +18,7 @@ let direction = "right";
 
 let firstTime = true;
 
-let snake = [
-  [0, 0],
-  [1, 0],
-  [2, 0],
-  [3, 0],
-  [4, 0],
-  [5, 0],
-  [6, 0],
-];
+let snake = [[0, 0]];
 
 let food;
 
@@ -65,11 +57,7 @@ function updateSnake() {
     return;
   }
 
-  if (
-    snake.some(
-        ([u,v]) => [u,v].toString() == nextHead.toString()
-    )
-  ) {
+  if (snake.some(([u, v]) => [u, v].toString() == nextHead.toString())) {
     handleGameOver();
   }
 
@@ -153,10 +141,7 @@ function handleInput(key) {
 function restartGame() {
   direction = "right";
 
-  snake = [
-    [0, 0],
-    [1, 0],
-  ];
+  snake = [[0, 0]];
 
   clearInterval(interval);
 
