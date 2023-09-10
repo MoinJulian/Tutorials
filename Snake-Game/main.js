@@ -99,7 +99,23 @@ function handleInput(key) {
     case "ArrowUp":
       direction = "up";
       break;
+    case " ":
+      restartGame();
+      break;
   }
+}
+
+function restartGame() {
+  direction = "right";
+
+  snake = [
+    [0, 0],
+    [1, 0],
+  ];
+
+  clearInterval(interval)
+
+  interval = setInterval(loop, 500);
 }
 
 interval = setInterval(loop, 500);
