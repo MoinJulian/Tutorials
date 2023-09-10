@@ -34,7 +34,7 @@ function drawSnake() {
 
 function updateSnake() {
   const [x, y] = snake.at(-1);
-  const [first, ...other] = snake;
+  const [_, ...other] = snake;
   switch (direction) {
     case "right":
       if (x + 1 >= SIZE) {
@@ -51,6 +51,22 @@ function updateSnake() {
       }
 
       snake = [...other, [x - 1, y]];
+      break;
+    case "up":
+      if (y - 1 < 0) {
+        handleGameOver();
+        return;
+      }
+
+      snake = [...other, [x, y - 1]];
+      break;
+    case "down":
+      if (y + 1 >= SIZE) {
+        handleGameOver();
+        return;
+      }
+
+      snake = [...other, [x, y + 1]];
       break;
   }
 }
