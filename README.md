@@ -1,4 +1,4 @@
-This is my Repository with all my Tutorial Apps I have developt throught the years.
+This is my Repository with all my Tutorial Apps I have developt throughout the years.
 
 The most of the tutorials are made by ScriptRaccon
 
