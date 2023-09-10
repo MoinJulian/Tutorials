@@ -21,6 +21,11 @@ let firstTime = true;
 let snake = [
   [0, 0],
   [1, 0],
+  [2, 0],
+  [3, 0],
+  [4, 0],
+  [5, 0],
+  [6, 0],
 ];
 
 let food;
@@ -58,6 +63,14 @@ function updateSnake() {
   if (!isValid(nextHead)) {
     handleGameOver();
     return;
+  }
+
+  if (
+    snake.some(
+        ([u,v]) => [u,v].toString() == nextHead.toString()
+    )
+  ) {
+    handleGameOver();
   }
 
   if (x + 1 >= SIZE) {
@@ -112,13 +125,13 @@ window.addEventListener("keydown", (e) => {
 function handleInput(key) {
   switch (key) {
     case "ArrowLeft":
-      if (direction != "left") {
-        direction = "right";
+      if (direction != "right") {
+        direction = "left";
       }
       break;
     case "ArrowRight":
-      if (direction != "right") {
-        direction = "left";
+      if (direction != "left") {
+        direction = "right";
       }
       break;
     case "ArrowDown":
