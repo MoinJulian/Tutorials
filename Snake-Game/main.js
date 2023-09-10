@@ -13,7 +13,7 @@ for (let y = 0; y < SIZE; y++) {
   }
 }
 
-let direction = "right";
+let direction = "left";
 
 let snake = [
   [0, 0],
@@ -33,17 +33,31 @@ function drawSnake() {
 }
 
 function updateSnake() {
+  const [x, y] = snake.at(-1);
+  const [first, ...other] = snake;
   switch (direction) {
     case "right":
-      const [x, y] = snake.at(-1);
       if (x + 1 >= SIZE) {
-        console.log("lost");
-        clearInterval(interval);
+        handleGameOver();
+        return;
       }
-      const [first, ...other] = snake;
+
       snake = [...other, [x + 1, y]];
       break;
+    case "left":
+      if (x - 1 < 0) {
+        handleGameOver();
+        return;
+      }
+
+      snake = [...other, [x - 1, y]];
+      break;
   }
+}
+
+function handleGameOver() {
+  console.log("lost");
+  clearInterval(interval);
 }
 
 function loop() {
