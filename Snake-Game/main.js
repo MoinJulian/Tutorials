@@ -2,6 +2,8 @@ const mainElement = document.querySelector("main");
 
 const SIZE = 20;
 
+mainElement.style.setProperty("--size", SIZE);
+
 for (let y = 0; y < SIZE; y++) {
   for (let x = 0; x < SIZE; x++) {
     const cell = document.createElement("div");
