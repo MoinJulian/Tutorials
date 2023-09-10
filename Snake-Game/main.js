@@ -16,6 +16,9 @@ let snake = [
 ];
 
 function drawSnake() {
+  document.querySelectorAll(".cell").forEach((cell) => {
+    cell.classList.remove("active");
+  });
   for (const [x, y] of snake) {
     const cell = document.getElementById(y + "," + x);
     cell.classList.add("active");
