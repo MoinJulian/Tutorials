@@ -3,6 +3,7 @@
   let nodes = [];
 
   function createNode(e) {
+    if (e.target.nodeName != "MAIN") return;
     const node = {
       x: e.clientX,
       y: e.clientY,
