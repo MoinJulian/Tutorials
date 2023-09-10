@@ -1,7 +1,9 @@
 const mainElement = document.querySelector("main");
 
-for (let y = 0; y < 20; y++) {
-  for (let x = 0; x < 20; x++) {
+const SIZE = 20;
+
+for (let y = 0; y < SIZE; y++) {
+  for (let x = 0; x < SIZE; x++) {
     const cell = document.createElement("div");
     cell.className = "cell";
     cell.id = y + "," + x;
@@ -13,13 +15,15 @@ let direction = "right";
 
 let snake = [[0, 0]];
 
+let interval;
+
 function drawSnake() {
   document.querySelectorAll(".cell").forEach((cell) => {
     cell.classList.remove("active");
   });
   for (const [x, y] of snake) {
     const cell = document.getElementById(y + "," + x);
-    cell.classList.add("active");
+    if (cell) cell.classList.add("active");
   }
 }
 
@@ -27,14 +31,18 @@ function updateSnake() {
   switch (direction) {
     case "right":
       const [x, y] = snake.at(-1);
+      if (x + 1 >= SIZE) {
+        window.alert("lost");
+        clearInterval(interval);
+      }
       snake = [snake.shift(), [x + 1, y]];
       break;
   }
 }
 
 function loop() {
-  drawSnake();
   updateSnake();
+  drawSnake();
 }
 
-setInterval(loop, 500);
+interval = setInterval(loop, 500);
