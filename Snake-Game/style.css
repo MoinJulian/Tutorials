@@ -1,4 +1,15 @@
 body {
   background-color: black;
   color: white;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+main {
+  width: 90vmin;
+  height: 90vmin;
+  border: 1px solid red;
 }
