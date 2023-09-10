@@ -1,4 +1,5 @@
 <script>
+  import Node from "./lib/components/Node.svelte";
   let nodes = [];
 
   function createNode(e) {
@@ -9,13 +10,17 @@
       color: "#ff0000",
     };
 
-    nodes.push(node);
-
-    console.log(nodes);
+    nodes = [...nodes, node];
   }
 </script>
 
-<main on:click={createNode}></main>
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+<main on:click={createNode}>
+  {#each nodes as node}
+    <Node {node} />
+  {/each}
+</main>
 
 <style>
   ::global(*) {
