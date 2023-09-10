@@ -1,7 +1,12 @@
 <script>
+// @ts-nocheck
+
   export let node;
+  import NodeMenu from "./NodeMenu.svelte";
 
   const mouse = { x: 0, y: 0 };
+
+  let showMenu;
 
   function initDrag(e) {
     mouse.x = e.clientX;
@@ -19,6 +24,7 @@
 
     mouse.x = e.clientX;
     mouse.y = e.clientY;
+    showMenu = false;
   }
 
   function endDrag() {
@@ -27,15 +33,21 @@
   }
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
   class="node"
   style="top: {node.y - node.size / 2}px; 
   left: {node.x - node.size / 2}px; 
   --size: {node.size}px; 
   --color: {node.color}"
+  on:mousedown={(e) => {
+    if (e.target.classList.contains("edit")) return;
+    showMenu = !showMenu;
+  }}
 >
   <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div class="circle" on:mousedown={initDrag}></div>
+  <NodeMenu bind:showMenu bind:node></NodeMenu>
 </div>
 
 <style>
