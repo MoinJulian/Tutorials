@@ -13,7 +13,7 @@ for (let y = 0; y < SIZE; y++) {
   }
 }
 
-let direction = "left";
+let direction = "right";
 
 let snake = [
   [0, 0],
@@ -79,6 +79,27 @@ function handleGameOver() {
 function loop() {
   drawSnake();
   updateSnake();
+}
+
+window.addEventListener("keydown", (e) => {
+  handleInput(e.key);
+});
+
+function handleInput(key) {
+  switch (key) {
+    case "ArrowLeft":
+      direction = "left";
+      break;
+    case "ArrowRight":
+      direction = "right";
+      break;
+    case "ArrowDown":
+      direction = "down";
+      break;
+    case "ArrowUp":
+      direction = "up";
+      break;
+  }
 }
 
 interval = setInterval(loop, 500);
