@@ -16,6 +16,8 @@ for (let y = 0; y < SIZE; y++) {
 
 let direction = "right";
 
+let firstTime = true;
+
 let snake = [
   [0, 0],
   [1, 0],
@@ -98,8 +100,9 @@ function generateFood() {
 generateFood();
 
 function loop() {
+  if (!firstTime) updateSnake();
   drawSnake();
-  updateSnake();
+  firstTime = false;
 }
 
 window.addEventListener("keydown", (e) => {
@@ -137,6 +140,8 @@ function restartGame() {
   clearInterval(interval);
 
   statusElement.innerText = "";
+
+  firstTime = true;
 
   interval = setInterval(loop, 500);
 
