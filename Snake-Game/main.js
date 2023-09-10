@@ -112,16 +112,24 @@ window.addEventListener("keydown", (e) => {
 function handleInput(key) {
   switch (key) {
     case "ArrowLeft":
-      direction = "left";
+      if (direction != "left") {
+        direction = "right";
+      }
       break;
     case "ArrowRight":
-      direction = "right";
+      if (direction != "right") {
+        direction = "left";
+      }
       break;
     case "ArrowDown":
-      direction = "down";
+      if (direction != "up") {
+        direction = "down";
+      }
       break;
     case "ArrowUp":
-      direction = "up";
+      if (direction != "down") {
+        direction = "up";
+      }
       break;
     case " ":
       restartGame();
