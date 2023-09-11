@@ -8,6 +8,10 @@
     const correct = selected_index == question.correct_answer_index;
     window.alert(correct);
   }
+
+  function next() {
+    window.alert("Next");
+  }
 </script>
 
 <form on:submit|preventDefault={check_answer}>
@@ -30,6 +34,9 @@
   </section>
   <menu>
     <button disabled={submmited}>Submit</button>
+    {#if submmited}
+      <button type="button" on:click={next}>Next</button>
+    {/if}
   </menu>
 </form>
 
