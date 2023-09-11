@@ -3,9 +3,14 @@
 
   export let question: question;
   let selected_index = 0;
+
+  function check_answer() {
+    const correct = selected_index == question.correct_answer_index;
+    window.alert(correct);
+  }
 </script>
 
-<form>
+<form on:submit|preventDefault={check_answer}>
   <h2>{question.question}</h2>
   <section class="answers">
     {#each question.answers as answer, index}
@@ -22,6 +27,9 @@
       </label>
     {/each}
   </section>
+  <menu>
+    <button>Submit</button>
+  </menu>
 </form>
 
 <style>
