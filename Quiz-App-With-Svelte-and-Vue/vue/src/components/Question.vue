@@ -2,10 +2,16 @@
 import { ref } from "vue";
 const { question } = defineProps<{ question: question }>();
 let selected_index = ref(0);
+
+function check_answer() {
+  const is_correct = selected_index.value == question.correct_answer_index;
+
+  window.alert(is_correct);
+}
 </script>
 
 <template>
-  <form>
+  <form @submit.prevent="check_answer">
     <h2>{{ question.question }}</h2>
     <sectio class="answers">
       <label
@@ -24,6 +30,9 @@ let selected_index = ref(0);
         </span>
       </label>
     </sectio>
+    <menu>
+      <button>Submit</button>
+    </menu>
   </form>
 </template>
 
