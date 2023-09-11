@@ -3,17 +3,22 @@ import { ref } from "vue";
 const { question } = defineProps<{ question: question }>();
 let selected_index = ref(0);
 let submitted = ref(false);
+let message = ref("");
 
 function check_answer() {
   submitted.value = true;
   const is_correct = selected_index.value == question.correct_answer_index;
 
-  window.alert(is_correct);
+  const correct_answer = question.answers[question.correct_answer_index];
+
+  message.value = is_correct
+    ? "This is correct!"
+    : "No, the correct answer is: " + correct_answer;
 }
 
 function next() {
   //TODO
-  window.alert("Next")
+  window.alert("Next");
 }
 </script>
 
@@ -40,9 +45,12 @@ function next() {
     </sectio>
     <menu>
       <button :disabled="submitted">Submit</button>
-      <button  @click="next" type="button" v-if="submitted">Next</button>
+      <button @click="next" type="button" v-if="submitted">Next</button>
     </menu>
   </form>
+  <div class="message">
+    {{ message }}
+  </div>
 </template>
 
 <style scoped>
