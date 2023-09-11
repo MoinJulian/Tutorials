@@ -45,6 +45,9 @@
     {/if}
   </menu>
 </form>
+<div class="message">
+  {message}
+</div>
 
 <style>
   h2 {
