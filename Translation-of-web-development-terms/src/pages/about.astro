@@ -1,0 +1,74 @@
+---
+import Layout from "../layouts/layout.astro";
+import {
+	numberOfTranslations,
+	numberOfMissingTranslations,
+} from "../data/translations";
+---
+
+<Layout>
+	<section class="about">
+		<p>
+			Here you find translations from English to German of terms
+			which are commonly used in web development. Currently
+			there are {numberOfTranslations} of them (of which {
+				numberOfMissingTranslations
+			} are missing).
+		</p>
+		<p>
+			Many native German speakers, including myself, just use
+			English words, even when German words are available
+			("checkbox" = "Kontrollkästchen"), or mix them up with
+			German words ("Defaultwert").
+		</p>
+		<p>
+			In order to differentiate the quality of the translations,
+			each translation is rated with one of the following four
+			options:
+		</p>
+		<ol>
+			<li>
+				<img src="/checked.png" alt="checked" /> The translation
+				is available, verified and used very often by German speakers.
+				<b>Example:</b> "compile" = "kompilieren"
+			</li>
+			<li>
+				<img src="/tick.png" alt="tick" /> The translation is available
+				and verified, but not used that much by German speakers.
+				Usually they prefer the English word here, i.e. they speak
+				<i>Denglisch</i>. <b>Example:</b> "destructuring" = "Destrukturierung"
+			</li>
+			<li>
+				<img src="/invention.png" alt="tick" /> I guessed or worked
+				out a translation here. The translation is not official
+				by any means. But if you like my translation, let's use
+				it more often! <b>Example:</b> "truthy" = "wahrmäßig"
+			</li>
+			<li>
+				<img src="/nothing.png" alt="nothing" /> The translation
+				is missing, unfortunately. Let me know if you have any
+				ideas. <b>Example:</b> "port" = ?
+			</li>
+		</ol>
+
+		<p>
+			I am happy about every contribution to this list. Please
+			reach out to me via <a
+				href="mailto:scriptraccoon@gmail.com">mail</a
+			> or directly submit a PR to the <a
+				href="https://github.com/ScriptRaccoon/translations-web-dev-astro"
+				target="_blank">GitHub repository</a
+			> (the file is <a
+				href="https://github.com/ScriptRaccoon/translations-web-dev-astro/blob/main/src/data/translations.ts"
+				target="_blank">translations.ts</a
+			>)
+		</p>
+		<p>
+			Icons created by
+			<a
+				href="https://www.flaticon.com/authors/freepik"
+				target="_blank">Freepik - Flaticon</a
+			>.
+		</p>
+	</section>
+</Layout>
