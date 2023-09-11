@@ -1,0 +1,174 @@
+/* global styles */
+
+:root {
+  --primary-color: hsl(191, 43%, 41%);
+  --secondary-color: hsl(191, 20%, 80%);
+  --light-gray: #eee;
+  --gray: #666;
+  --font-color: #111;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  color: var(--font-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* links */
+
+a {
+  color: inherit;
+  text-underline-offset: 2px;
+}
+
+/* header and footer */
+
+header,
+footer {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  line-height: 1.2;
+  box-shadow: 0px 0px 5px var(--primary-color);
+  padding-block: 25px;
+}
+
+header {
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 35px;
+}
+
+/* navigation */
+
+nav ul {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* main container */
+
+main {
+  margin-inline: auto;
+  max-width: 600px;
+  padding-inline: 10px;
+  padding-bottom: 20px;
+  flex-grow: 1;
+}
+
+/* table */
+
+table {
+  margin-block: 30px 20px;
+  width: 100%;
+  background-color: var(--secondary-color);
+}
+
+/* cells */
+
+thead td {
+  font-weight: 600;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 18px;
+}
+
+thead td:last-child {
+  font-size: 12px;
+  padding: 3px;
+}
+
+td {
+  background-color: white;
+  padding: 5px 10px;
+}
+
+td:last-child {
+  text-align: center;
+  width: 22px;
+}
+
+td img {
+  opacity: 0.8;
+  width: 14px;
+}
+
+/* search */
+
+form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  padding-top: 20px;
+  background-color: white;
+  box-shadow: 0px 15px 20px #fff;
+  z-index: 10;
+}
+
+input[type="search"] {
+  flex-grow: 1;
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+  outline: none;
+  padding: 5px 10px;
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+}
+
+input[type="search"]:focus {
+  background-color: var(--light-gray);
+}
+
+/* about */
+
+.about {
+  padding-top: 20px;
+}
+
+.about p {
+  margin-bottom: 10px;
+}
+
+.about img {
+  width: 16px;
+  margin-right: 5px;
+}
+
+.about ol {
+  list-style-type: none;
+  margin-block: 20px;
+}
+
+.about li {
+  padding-block: 15px;
+  padding-inline: 10px;
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+.about li:first-child {
+  border-top: 1px solid var(--secondary-color);
+}
+
+@media (min-width: 640px) {
+  .about li {
+    padding-inline: 0px;
+  }
+}
