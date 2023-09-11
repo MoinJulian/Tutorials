@@ -24,6 +24,7 @@ function check_answer() {
         <input
           type="radio"
           :value="index"
+          :disabled="submitted"
           :name="question.id"
           v-model="selected_index"
         />
