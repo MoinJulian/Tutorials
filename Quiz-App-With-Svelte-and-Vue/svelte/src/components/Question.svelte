@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { questions } from "../config";
-
   export let question: question;
   let selected_index = 0;
+  let submmited = false;
 
   function check_answer() {
+    submmited = true;
     const correct = selected_index == question.correct_answer_index;
     window.alert(correct);
   }
@@ -28,7 +28,7 @@
     {/each}
   </section>
   <menu>
-    <button>Submit</button>
+    <button disabled={submmited}>Submit</button>
   </menu>
 </form>
 
