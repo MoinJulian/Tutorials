@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
+
 const { question } = defineProps<{ question: question }>();
+const emit = defineEmits<{
+  (e: "finish", correct: boolean): void;
+}>();
+
 let selected_index = ref(0);
 let submitted = ref(false);
 let message = ref("");
+let correct = false;
 
 function check_answer() {
   submitted.value = true;
@@ -16,9 +22,8 @@ function check_answer() {
     : "No, the correct answer is: " + correct_answer;
 }
 
-function next() {
-  //TODO
-  window.alert("Next");
+function finish() {
+  emit("finish", correct);
 }
 </script>
 
@@ -45,7 +50,7 @@ function next() {
     </sectio>
     <menu>
       <button :disabled="submitted">Submit</button>
-      <button @click="next" type="button" v-if="submitted">Next</button>
+      <button @click="finish" type="button" v-if="submitted">Next</button>
     </menu>
   </form>
   <div class="message">
