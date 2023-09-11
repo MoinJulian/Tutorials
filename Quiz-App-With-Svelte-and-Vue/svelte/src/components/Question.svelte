@@ -1,22 +1,27 @@
 <script lang="ts">
+    import { createEventDispatcher } from "svelte";
+
   export let question: question;
   let selected_index = 0;
   let submmited = false;
   let message = "";
+  let correct = false
+
+  const dispatch = createEventDispatcher<{finish: boolean}>();
 
   function check_answer() {
     submmited = true;
-    const is_correct = selected_index == question.correct_answer_index;
+    correct = selected_index == question.correct_answer_index;
 
     const correct_answer = question.answers[question.correct_answer_index];
 
-    message = is_correct
+    message = correct
       ? "This is correct"
       : "No, the correct answer is: " + correct_answer;
   }
 
   function next() {
-    window.alert("Next");
+    dispatch("finish", correct)
   }
 </script>
 
