@@ -2,8 +2,10 @@
 import { ref } from "vue";
 const { question } = defineProps<{ question: question }>();
 let selected_index = ref(0);
+let submitted = ref(false);
 
 function check_answer() {
+  submitted.value = true;
   const is_correct = selected_index.value == question.correct_answer_index;
 
   window.alert(is_correct);
@@ -31,7 +33,7 @@ function check_answer() {
       </label>
     </sectio>
     <menu>
-      <button>Submit</button>
+      <button :disabled="submitted">Submit</button>
     </menu>
   </form>
 </template>
