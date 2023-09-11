@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background-color: hsl(11, 100%, 10%);
+  --button-color: rgb(170, 144, 40);
+  --answer-color: hsl(11, 100%, 20%);
+  --answer-color-selected: hsl(11, 100%, 30%);
+  --font-color: white;
+  --outline-color: #fff8;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--font-color);
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.4;
+}
+
+button {
+  font-size: inherit;
+  font-family: inherit;
+  background: none;
+  border: none;
+  color: inherit;
+  background-color: var(--button-color);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: initial;
+}
+
+.visually-hidden {
+  position: absolute;
+  left: -10000rem;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
