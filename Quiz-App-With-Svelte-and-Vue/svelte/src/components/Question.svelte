@@ -16,6 +16,7 @@
     {#each question.answers as answer, index}
       <label class="answer" class:selected={index == selected_index}>
         <input
+          disabled={submmited}
           type="radio"
           value={index}
           name={question.id}
