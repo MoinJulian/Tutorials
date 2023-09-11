@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const { question } = defineProps<{ question: question }>();
+const props = defineProps<{ question: question }>();
 const emit = defineEmits<{
   (e: "finish", correct: boolean): void;
 }>();
@@ -13,34 +13,40 @@ let correct = false;
 
 function check_answer() {
   submitted.value = true;
-  const is_correct = selected_index.value == question.correct_answer_index;
 
-  const correct_answer = question.answers[question.correct_answer_index];
+  correct = selected_index.value == props.question.correct_answer_index;
 
-  message.value = is_correct
+  const correct_answer =
+    props.question.answers[props.question.correct_answer_index];
+
+  message.value = correct
     ? "This is correct!"
     : "No, the correct answer is: " + correct_answer;
 }
 
 function finish() {
   emit("finish", correct);
+  selected_index.value = 0;
+  submitted.value = false;
+  message.value = "";
+  correct = false;
 }
 </script>
 
 <template>
   <form @submit.prevent="check_answer">
-    <h2>{{ question.question }}</h2>
+    <h2>{{ props.question.question }}</h2>
     <sectio class="answers">
       <label
         class="answer"
-        v-for="(answer, index) in question.answers"
+        v-for="(answer, index) in props.question.answers"
         :class="{ selected: index == selected_index }"
       >
         <input
           type="radio"
           :value="index"
           :disabled="submitted"
-          :name="question.id"
+          :name="props.question.id"
           v-model="selected_index"
         />
         <span class="answer_text">
