@@ -10,6 +10,11 @@ function check_answer() {
 
   window.alert(is_correct);
 }
+
+function next() {
+  //TODO
+  window.alert("Next")
+}
 </script>
 
 <template>
@@ -35,6 +40,7 @@ function check_answer() {
     </sectio>
     <menu>
       <button :disabled="submitted">Submit</button>
+      <button  @click="next" type="button" v-if="submitted">Next</button>
     </menu>
   </form>
 </template>
