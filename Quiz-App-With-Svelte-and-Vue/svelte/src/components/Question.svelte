@@ -2,11 +2,17 @@
   export let question: question;
   let selected_index = 0;
   let submmited = false;
+  let message = "";
 
   function check_answer() {
     submmited = true;
-    const correct = selected_index == question.correct_answer_index;
-    window.alert(correct);
+    const is_correct = selected_index == question.correct_answer_index;
+
+    const correct_answer = question.answers[question.correct_answer_index];
+
+    message = is_correct
+      ? "This is correct"
+      : "No, the correct answer is: " + correct_answer;
   }
 
   function next() {
