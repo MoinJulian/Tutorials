@@ -6,7 +6,7 @@
   import { questions } from "./config";
   let question_index = 0;
   $: question = questions[question_index];
-  const evaluation: boolean[] = [];
+  let evaluation: boolean[] = [];
   let finished = false;
 
   function finish_question(e: CustomEvent<boolean>) {
@@ -21,6 +21,12 @@
       finished = true;
     }
   }
+
+  function restart() {
+    question_index = 0;
+    evaluation = [];
+    finished = false;
+  }
 </script>
 
 <Header />
@@ -29,6 +35,6 @@
   {#if !finished}
     <Question on:finish={finish_question} {question}></Question>
   {:else}
-    <Finished {evaluation}></Finished>
+    <Finished on:restart={restart} {evaluation}></Finished>
   {/if}
 </Layout>
