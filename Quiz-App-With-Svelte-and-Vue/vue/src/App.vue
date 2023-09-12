@@ -3,8 +3,11 @@ import { ref, computed } from "vue";
 import Header from "./components/Header.vue";
 import Question from "./components/Question.vue";
 import Layout from "./components/Layout.vue";
+import Finish from "./components/Finish.vue";
 import { questions } from "./config";
-let question_index = ref(0);
+let question_index = ref(7);
+let finished = ref(false);
+
 const question = computed(() => questions[question_index.value]);
 
 const evaluaion: boolean[] = [];
@@ -18,7 +21,7 @@ function update_question() {
   if (question_index.value < questions.length - 1) {
     question_index.value++;
   } else {
-    window.alert("FINISHED");
+    finished.value = true;
   }
 }
 </script>
@@ -26,6 +29,11 @@ function update_question() {
 <template>
   <Header></Header>
   <Layout>
-    <Question @finish="finish_question" :question="question"></Question>
+    <Question
+      v-if="!finished"
+      @finish="finish_question"
+      :question="question"
+    ></Question>
+    <Finish v-else></Finish>
   </Layout>
 </template>
