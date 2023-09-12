@@ -2,6 +2,7 @@
   import Finished from "./components/Finished.svelte";
   import Header from "./components/Header.svelte";
   import Layout from "./components/Layout.svelte";
+  import Progress from "./components/Progress.svelte";
   import Question from "./components/Question.svelte";
   import { questions } from "./config";
   let question_index = 0;
@@ -33,6 +34,7 @@
 
 <Layout>
   {#if !finished}
+    <Progress count={questions.length} progress={question_index}></Progress>
     <Question on:finish={finish_question} {question}></Question>
   {:else}
     <Finished on:restart={restart} {evaluation}></Finished>
