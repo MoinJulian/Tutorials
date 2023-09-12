@@ -4,7 +4,7 @@
   import Layout from "./components/Layout.svelte";
   import Question from "./components/Question.svelte";
   import { questions } from "./config";
-  let question_index = 7;
+  let question_index = 0;
   $: question = questions[question_index];
   const evaluation: boolean[] = [];
   let finished = false;
@@ -29,6 +29,6 @@
   {#if !finished}
     <Question on:finish={finish_question} {question}></Question>
   {:else}
-    <Finished></Finished>
+    <Finished {evaluation}></Finished>
   {/if}
 </Layout>
