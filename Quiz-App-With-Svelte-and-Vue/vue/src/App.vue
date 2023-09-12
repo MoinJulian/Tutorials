@@ -34,6 +34,6 @@ function update_question() {
       @finish="finish_question"
       :question="question"
     ></Question>
-    <Finish v-else></Finish>
+    <Finish v-else :evaluaion="evaluaion"></Finish>
   </Layout>
 </template>
