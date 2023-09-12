@@ -5,7 +5,7 @@ import Question from "./components/Question.vue";
 import Layout from "./components/Layout.vue";
 import Finish from "./components/Finish.vue";
 import { questions } from "./config";
-let question_index = ref(7);
+let question_index = ref(0);
 let finished = ref(false);
 
 const question = computed(() => questions[question_index.value]);
