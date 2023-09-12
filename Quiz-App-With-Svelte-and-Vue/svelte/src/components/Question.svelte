@@ -1,13 +1,13 @@
 <script lang="ts">
-    import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher } from "svelte";
 
   export let question: question;
   let selected_index = 0;
   let submmited = false;
   let message = "";
-  let correct = false
+  let correct = false;
 
-  const dispatch = createEventDispatcher<{finish: boolean}>();
+  const dispatch = createEventDispatcher<{ finish: boolean }>();
 
   function check_answer() {
     submmited = true;
@@ -21,7 +21,11 @@
   }
 
   function next() {
-    dispatch("finish", correct)
+    dispatch("finish", correct);
+    selected_index = 0;
+    submmited = false;
+    message = "";
+    correct = false;
   }
 </script>
 
