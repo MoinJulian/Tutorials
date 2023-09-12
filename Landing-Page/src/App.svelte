@@ -11,6 +11,7 @@
   <li><a href="https://url.moinjulian.com" target="_blank">Url Shortner</a></li>
   <li><a href="https://web-developer-terms.moinjulian.com/" target="_blank">Translations of web development terms</a></li>
   <li><a href="https://quiz-app-vue.moinjulian.com/" target="_blank">Quiz App made with Vue</a></li>
+  <li><a href="https://quiz-app-svelte.moinjulian.com/" target="_blank">Quiz App made with Svelte</a></li>
 </ul>
 <br>
 <p class="error"> The repository can be found on <a href="https://github.com/moinjulian" target="_blank">GitHub</a> </p>
