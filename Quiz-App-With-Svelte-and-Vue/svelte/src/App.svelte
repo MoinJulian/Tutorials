@@ -1,11 +1,13 @@
 <script lang="ts">
+  import Finished from "./components/Finished.svelte";
   import Header from "./components/Header.svelte";
   import Layout from "./components/Layout.svelte";
   import Question from "./components/Question.svelte";
   import { questions } from "./config";
-  let question_index = 0;
+  let question_index = 7;
   $: question = questions[question_index];
   const evaluation: boolean[] = [];
+  let finished = false;
 
   function finish_question(e: CustomEvent<boolean>) {
     evaluation.push(e.detail);
@@ -13,10 +15,10 @@
   }
 
   function update_question() {
-    if(question_index < questions.length - 1 ) {
+    if (question_index < questions.length - 1) {
       question_index++;
-    }else {
-      window.alert("FINISHED")
+    } else {
+      finished = true;
     }
   }
 </script>
@@ -24,5 +26,9 @@
 <Header />
 
 <Layout>
-  <Question on:finish={finish_question} {question}></Question>
+  {#if !finished}
+    <Question on:finish={finish_question} {question}></Question>
+  {:else}
+    <Finished></Finished>
+  {/if}
 </Layout>
