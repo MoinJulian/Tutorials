@@ -5,12 +5,15 @@ const { count, progress } = defineProps<{
 }>();
 </script>
 <template>
-  <div class="progress">
+  <div class="progress" aria-describedby="progress">
     <div
       class="bar"
       :class="{ active: index <= progress }"
       v-for="(_, index) in count"
     ></div>
+  </div>
+  <div id="progress" class="visually-hidden">
+    Progress: Question {{ progress + 1 }} out of {{ count }}
   </div>
 </template>
 
