@@ -4,6 +4,7 @@ import Header from "./components/Header.vue";
 import Question from "./components/Question.vue";
 import Layout from "./components/Layout.vue";
 import Finish from "./components/Finish.vue";
+import Progress from "./components/Progress.vue";
 import { questions } from "./config";
 let question_index = ref(0);
 let finished = ref(false);
@@ -35,11 +36,10 @@ function restart() {
 <template>
   <Header></Header>
   <Layout>
-    <Question
-      v-if="!finished"
-      @finish="finish_question"
-      :question="question"
-    ></Question>
+    <template v-if="!finished">
+      <Progress :progress="question_index" :count="questions.length"></Progress>
+      <Question @finish="finish_question" :question="question"></Question>
+    </template>
     <Finish v-else :evaluaion="evaluaion" @restart="restart"></Finish>
   </Layout>
 </template>
