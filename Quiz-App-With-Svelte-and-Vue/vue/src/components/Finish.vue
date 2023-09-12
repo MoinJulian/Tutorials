@@ -1,8 +1,13 @@
 <script setup lang="ts">
 const { evaluaion } = defineProps<{ evaluaion: boolean[] }>();
+const emit = defineEmits<{ (e: "restart"): void }>();
 
 const count = evaluaion.length;
 const correct_count = evaluaion.filter((x) => x).length;
+
+function restart() {
+  emit("restart")
+}
 </script>
 
 <template>
@@ -11,7 +16,7 @@ const correct_count = evaluaion.filter((x) => x).length;
     Out of {{ count }} questions you answered {{ correct_count }} correctly.
   </p>
   <menu>
-    <button>Start over</button>
+    <button @click="restart">Start over</button>
   </menu>
 </template>
 

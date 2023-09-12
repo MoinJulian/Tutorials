@@ -10,7 +10,7 @@ let finished = ref(false);
 
 const question = computed(() => questions[question_index.value]);
 
-const evaluaion: boolean[] = [];
+let evaluaion: boolean[] = [];
 
 function finish_question(correct: boolean) {
   evaluaion.push(correct);
@@ -24,6 +24,12 @@ function update_question() {
     finished.value = true;
   }
 }
+
+function restart() {
+  question_index.value = 0;
+  evaluaion = [];
+  finished.value = false;
+}
 </script>
 
 <template>
@@ -34,6 +40,6 @@ function update_question() {
       @finish="finish_question"
       :question="question"
     ></Question>
-    <Finish v-else :evaluaion="evaluaion"></Finish>
+    <Finish v-else :evaluaion="evaluaion" @restart="restart"></Finish>
   </Layout>
 </template>
