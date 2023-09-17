@@ -50,3 +50,13 @@ body {
   --inner: white;
   --outer: black;
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+  }
+
+  .whole {
+    border-color: white;
+  }
+}
