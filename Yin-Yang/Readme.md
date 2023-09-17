@@ -1,0 +1,1 @@
+Yin and Yang made with HTML, CSS, JavaScript and SVG
