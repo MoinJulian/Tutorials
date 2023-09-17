@@ -15,4 +15,5 @@ body {
 
 svg {
   width: min(30rem, 95vmin);
+  animation: rotate 20s linear infinite;
 }
