@@ -44,4 +44,14 @@ export class Rectangle {
     ctx.fillStyle = this.color;
     ctx.fillRect(this.pos[0], this.pos[1], this.size[0], this.size[1]);
   }
+
+  overlapsWith(obj) {
+    if (this === obj) return false;
+    return (
+      this.left <= obj.right &&
+      this.right >= obj.left &&
+      this.bottom >= obj.top &&
+      this.top <= obj.bottom
+    );
+  }
 }
