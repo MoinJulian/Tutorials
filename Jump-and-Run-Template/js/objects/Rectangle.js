@@ -54,4 +54,8 @@ export class Rectangle {
       this.top <= obj.bottom
     );
   }
+
+  update() {
+    //
+  }
 }
