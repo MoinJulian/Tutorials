@@ -10,6 +10,7 @@ export class Player extends Box {
       friction: 0.2,
     });
     this.walkSpeed = 0.012;
+    this.jumpSpeed = 1.45;
     this.addControls();
   }
 
@@ -21,6 +22,12 @@ export class Player extends Box {
           break;
         case "ArrowLeft":
           this.acc = -this.walkSpeed;
+          break;
+        case "ArrowUp":
+          if (this.onGround) {
+            this.onGround = false;
+            this.vel[1] = -this.jumpSpeed;
+          }
           break;
       }
     });

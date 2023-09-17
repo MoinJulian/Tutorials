@@ -5,7 +5,7 @@ import { timer } from "./objects/Timer.js";
 
 const b = new Player({
   pos: [100, 100],
-  size: [100, 100],
+  size: [40, 40],
   color: "red",
 });
 
