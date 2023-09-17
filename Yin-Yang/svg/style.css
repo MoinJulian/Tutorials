@@ -24,6 +24,6 @@ svg {
   }
 
   .whole {
-    border-color: white;
+    stroke: white;
   }
 }
