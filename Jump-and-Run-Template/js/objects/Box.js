@@ -5,7 +5,7 @@ export class Box extends Rectangle {
   constructor(options) {
     super(options);
     this.grav = 0.005;
-    this.friction = 0; //between 0 and 1
+    this.friction = 0.01; //between 0 and 1
     this.val = [0, 0];
     this.acc = 0;
     this.onGround = false;
