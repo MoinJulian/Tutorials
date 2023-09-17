@@ -12,3 +12,13 @@ body {
     rotate: 1turn;
   }
 }
+
+.whole {
+  animation: rotate 20s linear infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+  }
+}
