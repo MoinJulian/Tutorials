@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.whole {
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  border: 0.15rem solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: linear-gradient(
+    to right,
+    black,
+    black 50%,
+    white,
+    white 50%
+  );
+}
+
+.yang {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background-image: radial-gradient(
+    closest-side,
+    black,
+    black 25%,
+    white 25%,
+    white
+  );
+}
+
+.yin {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background-image: radial-gradient(
+    closest-side,
+    white,
+    white 25%,
+    black 25%,
+    black
+  );
+}
