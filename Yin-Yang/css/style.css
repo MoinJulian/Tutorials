@@ -6,9 +6,16 @@ body {
   min-height: 100vh;
 }
 
+.whole,
+.yang,
+.yin {
+  width: var(--size, 1rem);
+  aspect-ratio: 1;
+  border-radius: 50;
+}
+
 .whole {
-  width: 12rem;
-  height: 12rem;
+  --size: 12rem;
   border-radius: 50%;
   border: 0.15rem solid black;
   display: flex;
@@ -23,28 +30,26 @@ body {
   );
 }
 
+.yin, .yang {
+    --inner: white,
+    --outer: black;
+    width: 50%;
+
+    background-image: radial-gradient(
+        closest-side,
+        var(--inner),
+        var(--inner) 25%,
+        var(--outer) 25%,
+        var(--outer)
+      );
+}
+
 .yang {
-  width: 6rem;
-  height: 6rem;
-  border-radius: 50%;
-  background-image: radial-gradient(
-    closest-side,
-    black,
-    black 25%,
-    white 25%,
-    white
-  );
+    --inner: black;
+    --outer: white;
 }
 
 .yin {
-  width: 6rem;
-  height: 6rem;
-  border-radius: 50%;
-  background-image: radial-gradient(
-    closest-side,
-    white,
-    white 25%,
-    black 25%,
-    black
-  );
+    --inner: white;
+    --outer: black;
 }
