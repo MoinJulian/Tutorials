@@ -1,4 +1,5 @@
 import { Rectangle } from "./Rectangle.js";
+import { levelSize } from "../Level.js";
 
 export class Box extends Rectangle {
   constructor(options) {
@@ -17,5 +18,21 @@ export class Box extends Rectangle {
     this.pos[0] += this.vel[0] * deltaTime;
     this.pos[1] += this.vel[1] * deltaTime;
     this.onGround = false;
+    this.boundToLevel();
+  }
+
+  boundToLevel() {
+    if (this.bottom >= levelSize[1]) {
+      this.vel[1] = 0;
+      this.setBottom(levelSize[1]);
+      this.onGround = true;
+    }
+    if (this.left <= 0) {
+      this.setLeft(0);
+      this.vel[0] = 0;
+    } else if (this.right >= levelSize[0]) {
+      this.setRight(levelSize[0]);
+      this.vel[0] = 0;
+    }
   }
 }
