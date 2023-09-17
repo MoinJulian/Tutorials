@@ -1,5 +1,6 @@
 import { Box } from "./objects/Box.js";
 import { clearCanvas } from "./canvas.js";
+import { timer } from "./objects/Timer.js";
 
 const b = new Box({
   pos: [100, 100],
@@ -9,12 +10,12 @@ const b = new Box({
 
 b.draw();
 
-b.vel = [0.1, 0];
+b.vel = [0.2, -0.5];
 
-window.addEventListener("keydown", (e) => {
-  if (e.key === " ") {
-    clearCanvas();
-    b.update(1000 / 60);
-    b.draw();
-  }
-});
+timer.update = (deltaTime) => {
+  clearCanvas();
+  b.update(deltaTime);
+  b.draw();
+};
+
+timer.start();
