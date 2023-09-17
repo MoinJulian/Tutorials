@@ -12,3 +12,7 @@ body {
     rotate: 1turn;
   }
 }
+
+svg {
+  width: min(30rem, 95vmin);
+}
