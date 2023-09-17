@@ -1,15 +1,18 @@
 body {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow: hidden;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+@keyframes rotate {
+  to {
+    rotate: 1turn;
   }
-  
-  @keyframes rotate {
-    to {
-      rotate: 1turn;
-    }
-  }
-  
+}
+
+canvas {
+  outline: 1px solid red;
+}
