@@ -27,6 +27,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  to {
+    rotate: 1turn;
+  }
 }
 
 .yin,
