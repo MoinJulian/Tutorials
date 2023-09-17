@@ -1,9 +1,20 @@
-import { Rectangle } from "./objects/Rectangle.js";
+import { Box } from "./objects/Box.js";
+import { clearCanvas } from "./canvas.js";
 
-const r = new Rectangle({ pos: [10, 10], size: [300, 20], color: "green" });
-const s = new Rectangle({ pos: [10, 15], size: [300, 20], color: "blue" });
+const b = new Box({
+  pos: [100, 100],
+  size: [100, 100],
+  color: "red",
+});
 
-r.draw();
-s.draw();
+b.draw();
 
-console.log(r.overlapsWith(s));
+b.vel = [0.1, 0];
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === " ") {
+    clearCanvas();
+    b.update(1000 / 60);
+    b.draw();
+  }
+});
