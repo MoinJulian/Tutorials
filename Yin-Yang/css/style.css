@@ -1,9 +1,9 @@
 body {
   margin: 0;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 }
 
 .whole,
@@ -11,45 +11,42 @@ body {
 .yin {
   width: var(--size, 1rem);
   aspect-ratio: 1;
-  border-radius: 50;
+  border-radius: 50%;
 }
 
 .whole {
-  --size: 12rem;
-  border-radius: 50%;
+  --size: min(30rem, 95vmin);
   border: 0.15rem solid black;
+  background-image: linear-gradient(
+    to right,
+    white,
+    white 50%,
+    black 50%,
+    black 100%
+  );
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: linear-gradient(
-    to right,
-    black,
-    black 50%,
-    white,
-    white 50%
+}
+
+.yin,
+.yang {
+  --size: 50%;
+  background-image: radial-gradient(
+    closest-side,
+    var(--inner) 0%,
+    var(--inner) 25%,
+    var(--outer) 25%,
+    var(--outer) 100%
   );
 }
 
-.yin, .yang {
-    --inner: white,
-    --outer: black;
-    width: 50%;
-
-    background-image: radial-gradient(
-        closest-side,
-        var(--inner),
-        var(--inner) 25%,
-        var(--outer) 25%,
-        var(--outer)
-      );
-}
-
 .yang {
-    --inner: black;
-    --outer: white;
+  --inner: black;
+  --outer: white;
 }
 
 .yin {
-    --inner: white;
-    --outer: black;
+  --inner: white;
+  --outer: black;
 }
