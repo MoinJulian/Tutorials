@@ -2,15 +2,15 @@ import { Rectangle } from "./Rectangle.js";
 import { levelSize } from "../Level.js";
 
 export class Box extends Rectangle {
-  constructor(options) {
+  constructor(options, type) {
     const { pos, size, color, grav, friction, vel } = options;
-    super({ pos, size, color });
+    super({ pos, size, color }, type || "Box");
     this.grav = grav || 0.005;
     this.friction = friction || 0; //between 0 and 1
-    this.val = vel || [0, 0];
+    this.vel = vel || [0, 0];
     this.acc = 0;
     this.onGround = false;
-    this.ppos = [...this.pos];
+    this.ppos = [...pos];
   }
 
   get prevLeft() {
@@ -33,8 +33,8 @@ export class Box extends Rectangle {
     this.vel[0] += this.acc * deltaTime;
     this.vel[0] *= 1 - this.friction;
     this.vel[1] += this.grav * deltaTime;
-    this.pos[0] += this.vel[0] * deltaTime;
     this.pos[1] += this.vel[1] * deltaTime;
+    this.pos[0] += this.vel[0] * deltaTime;
     this.onGround = false;
   }
 

@@ -22,7 +22,13 @@ const s = new Rectangle({
   color: "blue",
 });
 
-const objects = [p, r, s];
+const b = new Box({
+  pos: [400, 500],
+  size: [60, 60],
+  color: "orange",
+});
+
+const objects = [p, r, s, b];
 
 p.vel = [0.2, -0.5];
 

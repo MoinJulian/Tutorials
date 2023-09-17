@@ -1,11 +1,11 @@
 import { ctx } from "../canvas.js";
 
 export class Rectangle {
-  constructor(options) {
+  constructor(options, type) {
     this.pos = options.pos;
     this.size = options.size;
     this.color = options.color;
-    this.type = "Rectangle";
+    this.type = type || "Rectangle";
   }
 
   get left() {
