@@ -16,13 +16,19 @@ const r = new Rectangle({
   color: "blue",
 });
 
-const objects = [p, r];
+const s = new Rectangle({
+  pos: [200, 500],
+  size: [10, 100],
+  color: "blue",
+});
+
+const objects = [p, r, s];
 
 p.vel = [0.2, -0.5];
 
 timer.update = (deltaTime) => {
   clearCanvas();
-  objects.forEach((obj) => obj.update(deltaTime));
+  objects.forEach((obj) => obj.update(deltaTime, objects));
   objects.forEach((obj) => obj.draw());
 };
 
