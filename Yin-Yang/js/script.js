@@ -4,6 +4,11 @@ const ctx = canvas.getContext("2d");
 const prefers_dark = window.matchMedia("(prefers-color-scheme: dark)");
 let stroke_color = prefers_dark.matches ? "white" : "black";
 
+prefers_dark.addEventListener("change", () => {
+  stroke_color = prefers_dark.matches ? "white" : "black";
+  draw_all();
+});
+
 function adjust_canvas() {
   canvas.width = canvas.height = Math.min(
     480,
