@@ -12,7 +12,3 @@ body {
     rotate: 1turn;
   }
 }
-
-canvas {
-  outline: 1px solid red;
-}
