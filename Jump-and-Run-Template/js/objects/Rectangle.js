@@ -45,13 +45,13 @@ export class Rectangle {
     ctx.fillRect(this.pos[0], this.pos[1], this.size[0], this.size[1]);
   }
 
-  overlapsWith(obj) {
+  overlapsWith(obj, offset = [0, 0]) {
     if (this === obj) return false;
     return (
-      this.left <= obj.right &&
-      this.right >= obj.left &&
-      this.bottom >= obj.top &&
-      this.top <= obj.bottom
+      this.left + offset[0] <= obj.right &&
+      this.right + offset[0] >= obj.left &&
+      this.bottom + offset[1] >= obj.top &&
+      this.top + offset[1] <= obj.bottom
     );
   }
 

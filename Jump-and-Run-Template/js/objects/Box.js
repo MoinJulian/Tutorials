@@ -42,15 +42,22 @@ export class Box extends Rectangle {
     this.ppos = [...this.pos];
     this.applyPhysics(deltaTime);
     objects.forEach((obj) => {
-      this.collideWith(obj).fromAbove();
-      this.collideWith(obj).fromBelow();
-      this.collideWith(obj).fromLeft();
-      this.collideWith(obj).fromRight();
+      this.collideWith(obj, objects).fromAbove();
+      this.collideWith(obj, objects).fromBelow();
+      this.collideWith(obj, objects).fromLeft();
+      this.collideWith(obj, objects).fromRight();
     });
     this.boundToLevel();
   }
 
-  collideWith(obj) {
+  push() {
+    return {
+      toLeft: () => false,
+      toRight: () => false,
+    };
+  }
+
+  collideWith(obj, objects) {
     return {
       fromAbove: () => {
         if (this.prevBottom <= obj.top && this.overlapsWith(obj)) {
@@ -67,12 +74,14 @@ export class Box extends Rectangle {
       },
       fromLeft: () => {
         if (this.prevRight <= obj.left && this.overlapsWith(obj)) {
+          if (this.push(obj, objects).toRight()) return;
           this.setRight(obj.left);
           this.vel[0] = 0;
         }
       },
       fromRight: () => {
         if (this.prevLeft >= obj.right && this.overlapsWith(obj)) {
+          if (this.push(obj, objects).toLeft()) return;
           this.setLeft(obj.right);
           this.vel[0] = 0;
         }
@@ -93,5 +102,19 @@ export class Box extends Rectangle {
       this.setRight(levelSize[0]);
       this.vel[0] = 0;
     }
+  }
+
+  canBeMoved(offset, objects) {
+    if (
+      this.left + offset[0] < 0 ||
+      this.right + offset[0] > levelSize[0] ||
+      this.top + offset[1] < 0 ||
+      this.bottom + offset[1] > levelSize[1]
+    ) {
+      return false;
+    }
+    return objects
+      .filter((obj) => obj.type === "Rectangle" || obj.type === "Box")
+      .every((obj) => !this.overlapsWith(obj, offset));
   }
 }

@@ -45,4 +45,27 @@ export class Player extends Box {
       }
     });
   }
+
+  push(box, objects) {
+    return {
+      toLeft: () => {
+        if (box.type !== "Box") return false;
+        const distance = box.right - this.left;
+        if (box.canBeMoved([-distance, 0], objects)) {
+          box.setRight(this.left);
+          return true;
+        }
+        return false;
+      },
+      toRight: () => {
+        if (box.type !== "Box") return false;
+        const distance = this.right - box.left;
+        if (box.canBeMoved([distance, 0], objects)) {
+          box.setLeft(this.right);
+          return true;
+        }
+        return false;
+      },
+    };
+  }
 }
