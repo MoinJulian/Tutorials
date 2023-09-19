@@ -117,4 +117,36 @@ export class Box extends Rectangle {
       .filter((obj) => obj.type === "Rectangle" || obj.type === "Box")
       .every((obj) => !this.overlapsWith(obj, offset));
   }
+
+  getDistanceToRightObject(objects) {
+    let d = levelSize[0] - this.right;
+    objects
+      .filter((obj) => obj.type === "Rectangle" || obj.type === "Box")
+      .forEach((obj) => {
+        if (
+          this.right <= obj.left &&
+          this.bottom > obj.top &&
+          this.top < obj.bottom
+        ) {
+          d = Math.min(d, obj.left - this.right);
+        }
+      });
+    return d;
+  }
+
+  getDistanceToLeftObject(objects) {
+    let d = this.left;
+    objects
+      .filter((obj) => obj.type === "Rectangle" || obj.type === "Box")
+      .forEach((obj) => {
+        if (
+          this.left >= obj.right &&
+          this.bottom > obj.top &&
+          this.top < obj.bottom
+        ) {
+          d = Math.min(d, this.left - obj.right);
+        }
+      });
+    return d;
+  }
 }

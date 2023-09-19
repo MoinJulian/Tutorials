@@ -55,6 +55,12 @@ export class Player extends Box {
           box.setRight(this.left);
           return true;
         }
+        const smallDistance = box.getDistanceToLeftObject(objects);
+        if (box.canBeMoved([-smallDistance, 0], objects)) {
+          box.setLeft(box.left - smallDistance);
+          this.setLeft(box.right);
+          return true;
+        }
         return false;
       },
       toRight: () => {
@@ -62,6 +68,12 @@ export class Player extends Box {
         const distance = this.right - box.left;
         if (box.canBeMoved([distance, 0], objects)) {
           box.setLeft(this.right);
+          return true;
+        }
+        const smallDistance = box.getDistanceToRightObject(objects);
+        if (box.canBeMoved([smallDistance, 0], objects)) {
+          box.setLeft(box.left + smallDistance);
+          this.setRight(box.left);
           return true;
         }
         return false;

@@ -48,10 +48,10 @@ export class Rectangle {
   overlapsWith(obj, offset = [0, 0]) {
     if (this === obj) return false;
     return (
-      this.left + offset[0] <= obj.right &&
-      this.right + offset[0] >= obj.left &&
-      this.bottom + offset[1] >= obj.top &&
-      this.top + offset[1] <= obj.bottom
+      this.left + offset[0] < obj.right &&
+      this.right + offset[0] > obj.left &&
+      this.bottom + offset[1] > obj.top &&
+      this.top + offset[1] < obj.bottom
     );
   }
 
