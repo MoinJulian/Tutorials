@@ -1,4 +1,6 @@
 import { Box } from "./Box.js";
+import { camera, levelSize } from "../Level.js";
+import { canvas } from "../canvas.js";
 
 export class Player extends Box {
   constructor(options, type) {
@@ -79,5 +81,16 @@ export class Player extends Box {
         return false;
       },
     };
+  }
+
+  playerUpdate() {
+    camera.pos[0] = Math.max(
+      0,
+      Math.min(levelSize[0] - canvas.width, this.right - canvas.width / 2)
+    );
+    camera.pos[1] = Math.max(
+      0,
+      Math.min(levelSize[1] - canvas.height, this.top - canvas.height / 2)
+    );
   }
 }

@@ -4,33 +4,35 @@ import { Player } from "./objects/Player.js";
 import { clearCanvas } from "./canvas.js";
 import { timer } from "./objects/Timer.js";
 
-const p = new Player({
-  pos: [100, 100],
-  size: [40, 40],
-  color: "red",
-});
+const objects = [
+  new Player({
+    pos: [100, 800],
+    size: [40, 40],
+    color: "red",
+  }),
+  new Rectangle({
+    pos: [400, 650],
+    size: [100, 10],
+    color: "blue",
+  }),
+  new Rectangle({
+    pos: [200, 900],
+    size: [10, 100],
+    color: "blue",
+  }),
+  new Box({
+    pos: [400, 900],
+    size: [60, 60],
+    color: "orange",
+  }),
+  new Rectangle({
+    pos: [500, 900],
+    size: [500, 10],
+    color: "green",
+  }),
+];
 
-const r = new Rectangle({
-  pos: [400, 400],
-  size: [100, 10],
-  color: "blue",
-});
-
-const s = new Rectangle({
-  pos: [200, 500],
-  size: [10, 100],
-  color: "blue",
-});
-
-const b = new Box({
-  pos: [400, 500],
-  size: [60, 60],
-  color: "orange",
-});
-
-const objects = [p, r, s, b];
-
-p.vel = [0.2, -0.5];
+//p.vel = [0.2, -0.5];
 
 timer.update = (deltaTime) => {
   clearCanvas();

@@ -48,6 +48,11 @@ export class Box extends Rectangle {
       this.collideWith(obj, objects).fromRight();
     });
     this.boundToLevel();
+    this.playerUpdate();
+  }
+
+  playerUpdate() {
+    //
   }
 
   push() {
