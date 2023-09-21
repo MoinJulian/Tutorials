@@ -1,6 +1,4 @@
 import { Box } from "./Box.js";
-import { camera, levelSize } from "../Level.js";
-import { canvas } from "../canvas.js";
 
 export class Player extends Box {
   constructor(options, type) {
@@ -36,6 +34,7 @@ export class Player extends Box {
           break;
       }
     });
+
     document.addEventListener("keyup", (e) => {
       switch (e.key) {
         case "ArrowRight":
@@ -48,34 +47,34 @@ export class Player extends Box {
     });
   }
 
-  push(box, objects) {
+  push(obj) {
     return {
-      toLeft: () => {
-        if (box.type !== "Box") return false;
-        const distance = box.right - this.left;
-        if (box.canBeMoved([-distance, 0], objects)) {
-          box.setRight(this.left);
+      toRight: () => {
+        if (obj.type !== "Box") return false;
+        const distance = this.right - obj.left;
+        if (obj.canBeMovedBy([distance, 0])) {
+          obj.setLeft(obj.left + distance);
           return true;
         }
-        const smallDistance = box.getDistanceToLeftObject(objects);
-        if (box.canBeMoved([-smallDistance, 0], objects)) {
-          box.setLeft(box.left - smallDistance);
-          this.setLeft(box.right);
+        const smallDistance = obj.getDistanceToRightObject();
+        if (obj.canBeMovedBy([smallDistance, 0])) {
+          obj.setLeft(obj.left + smallDistance);
+          this.setRight(obj.left);
           return true;
         }
         return false;
       },
-      toRight: () => {
-        if (box.type !== "Box") return false;
-        const distance = this.right - box.left;
-        if (box.canBeMoved([distance, 0], objects)) {
-          box.setLeft(this.right);
+      toLeft: () => {
+        if (obj.type !== "Box") return false;
+        const distance = obj.right - this.left;
+        if (obj.canBeMovedBy([-distance, 0])) {
+          obj.setRight(this.left);
           return true;
         }
-        const smallDistance = box.getDistanceToRightObject(objects);
-        if (box.canBeMoved([smallDistance, 0], objects)) {
-          box.setLeft(box.left + smallDistance);
-          this.setRight(box.left);
+        const smallDistance = obj.getDistanceToLeftObject();
+        if (obj.canBeMovedBy([-smallDistance, 0])) {
+          obj.setLeft(obj.left - smallDistance);
+          this.setLeft(obj.right);
           return true;
         }
         return false;
@@ -83,14 +82,10 @@ export class Player extends Box {
     };
   }
 
-  playerUpdate() {
-    camera.pos[0] = Math.max(
-      0,
-      Math.min(levelSize[0] - canvas.width, this.right - canvas.width / 2)
+  checkGoal() {
+    const hasReachedGoal = this.level.objectsOfType.Goal.some((goal) =>
+      this.overlapsWith(goal)
     );
-    camera.pos[1] = Math.max(
-      0,
-      Math.min(levelSize[1] - canvas.height, this.top - canvas.height / 2)
-    );
+    if (hasReachedGoal) this.level.won = true;
   }
 }

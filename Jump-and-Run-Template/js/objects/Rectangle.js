@@ -1,4 +1,3 @@
-import { camera } from "../Level.js";
 import { ctx } from "../canvas.js";
 
 export class Rectangle {
@@ -7,6 +6,8 @@ export class Rectangle {
     this.size = options.size;
     this.color = options.color;
     this.type = type || "Rectangle";
+    this.level = null;
+    this.originalPos = [...this.pos];
   }
 
   get left() {
@@ -44,24 +45,26 @@ export class Rectangle {
   draw() {
     ctx.fillStyle = this.color;
     ctx.fillRect(
-      this.pos[0] - camera.pos[0],
-      this.pos[1] - camera.pos[1],
+      this.pos[0] - this.level.cameraPos[0],
+      this.pos[1] - this.level.cameraPos[1],
       this.size[0],
       this.size[1]
     );
   }
 
-  overlapsWith(obj, offset = [0, 0]) {
+  update() {}
+
+  overlapsWith(obj, vector = [0, 0]) {
     if (this === obj) return false;
     return (
-      this.left + offset[0] < obj.right &&
-      this.right + offset[0] > obj.left &&
-      this.bottom + offset[1] > obj.top &&
-      this.top + offset[1] < obj.bottom
+      this.left + vector[0] < obj.right &&
+      this.right + vector[0] > obj.left &&
+      this.bottom + vector[1] > obj.top &&
+      this.top + vector[1] < obj.bottom
     );
   }
 
-  update() {
-    //
+  reset() {
+    this.pos = [...this.originalPos];
   }
 }
