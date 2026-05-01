@@ -1,7 +1,7 @@
 <main>
   <h1>This is the Landing Page for all my Tutorial Projects</h1>
 
-  <p>The most of the Turtorials are made by <a href="https://youtube.com/@scriptraccoon" target="_blank">Script Raccoon</a>.</p>
+  <p>All of the Turtorials are made by <a href="https://youtube.com/@scriptraccoon" target="_blank">Script Raccoon</a>.</p>
 
 <p>Here you can find all my Tutorial Projects, for Example:</p>
 
